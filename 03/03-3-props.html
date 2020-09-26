@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Props demo</title>
+  </head>
+  <body>
+    <div id="app">
+      <header>
+        <h1>Vue Props Demo</h1>
+      </header>
+      <p>{{ message }}</p>
+      <child-component v-bind:propsdat="message"></child-component>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          message: "this is parent component message",
+        },
+        components: {
+          "child-component": {
+            props: ["propsdat"],
+            template: "<div><b>propsdata</b><p>{{ propsdat }}</p></div>",
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

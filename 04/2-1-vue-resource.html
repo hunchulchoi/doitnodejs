@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>04-2-1 Vue resource demo</title>
+  </head>
+  <body>
+    <header>
+      <h1>04-2-1 Vue resource demo</h1>
+    </header>
+    <div id="app">
+      <div>{{ message }}</div>
+      <button @click="getData">가져오기</button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.5.1/vue-resource.min.js"></script>
+    <script>
+      new Vue({
+        data: {
+          message: "데이터 가져오기 전",
+        },
+        methods: {
+          getData: function () {
+            console.log("getData()");
+
+            this.$http
+              .get(
+                "https://raw.githubusercontent.com/joshua1988/doit-vuejs/master/data/demo.json"
+              )
+              .then((res) => {
+                this.message = res.body;
+              })
+              .catch((err) => console.error(err));
+          },
+        },
+      }).$mount("#app");
+    </script>
+  </body>
+</html>

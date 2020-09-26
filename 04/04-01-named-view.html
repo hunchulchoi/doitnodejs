@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>04-01 Named view demo</title>
+  </head>
+  <body>
+    <header><h1>04-01 Named view demo</h1></header>
+    <div id="app">
+      <router-view name="header"></router-view>
+      <hr />
+      <router-view></router-view>
+      <hr />
+      <router-view name="footer"></router-view>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script>
+      new Vue({
+        router: new VueRouter({
+          routes: [
+            {
+              path: "/",
+              components: {
+                default1: { template: "<p>This is Body component</p>" },
+                header: { template: "<p>This is Header component</p>" },
+                footer: { template: "<p>This is Footer component</p>" },
+              },
+            },
+          ],
+        }),
+      }).$mount("#app");
+    </script>
+  </body>
+</html>

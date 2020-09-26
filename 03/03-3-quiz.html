@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>doit vuejs 03-03 quiz!</title>
+  </head>
+  <body>
+    <header><h1>doit vuejs 03-03 quiz!</h1></header>
+    <div id="app">
+      <child-component v-bind:propsdata="message"></child-component>
+      <sibling-component v-bind:propsdata="anotherMaeesage"></sibling-component>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="./js/03-3-quiz.js" />
+  </body>
+</html>

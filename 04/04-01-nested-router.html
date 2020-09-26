@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>04-01 Nested router</title>
+  </head>
+  <body>
+    <header>
+      <h1>04-01 Nested router</h1>
+    </header>
+    <hr />
+    <div id="app">
+      <p>
+        <router-link to="/user/posts">posts</router-link>
+        <router-link to="/user/profile">profile</router-link>
+      </p>
+      <router-view></router-view>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script>
+      new Vue({
+        router: new VueRouter({
+          mode: "history",
+          routes: [
+            {
+              path: "/user",
+              component: {
+                template:
+                  "<div>User component<hr/><router-view></router-view></div>",
+              },
+              children: [
+                {
+                  path: "posts",
+                  component: { template: "<p>user post component</p>" },
+                },
+                {
+                  path: "profile",
+                  component: { template: "<p>user profile component</p>" },
+                },
+              ],
+            },
+          ],
+        }),
+      }).$mount("#app");
+    </script>
+  </body>
+</html>

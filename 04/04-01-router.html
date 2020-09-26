@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>04-1 vue router</title>
+  </head>
+  <body>
+    <header><h1>04-1 vue router</h1></header>
+    <div id="app">
+      <p>
+        <router-link to="/main">Main</router-link>
+        <router-link to="/login">Login</router-link>
+      </p>
+      <hr />
+      <router-view></router-view>
+    </div>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+  <script>
+    new Vue({
+      el: "#app",
+      router: new VueRouter({
+        mode: "history",
+        routes: [
+          { path: "/main", component: { template: "<h1>Main page</h1>" } },
+          { path: "/login", component: { template: "<h1>Login page</h1>" } },
+        ],
+      }),
+    });
+  </script>
+</html>

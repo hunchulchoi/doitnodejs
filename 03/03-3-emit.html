@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue emit Demo</title>
+  </head>
+  <body>
+    <div id="app">
+      <header>
+        <h1>Vue Emit Demo</h1>
+      </header>
+      <p>{{ message }}</p>
+      <child-component v-on:clicked="clicked"></child-component>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          message: "아무일도 없어",
+        },
+        methods: {
+          clicked() {
+            this.message = "버튼 클릭!";
+          },
+        },
+        components: {
+          "child-component": {
+            template: '<button v-on:click="clicked">눌러보시오</button>',
+            methods: {
+              clicked() {
+                this.$emit("clicked");
+              },
+            },
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

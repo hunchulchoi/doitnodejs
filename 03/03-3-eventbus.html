@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue EventBus Demo</title>
+  </head>
+  <body>
+    <h1>Vue EventBus Demo</h1>
+    <div id="app1">
+      <p>{{ message }}</p>
+      <child-component2></child-component2>
+      <child-component1></child-component1>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+      const eventBus = new Vue();
+
+      new Vue({
+        el: "#app1",
+        data: {
+          message: "안녕하세요1",
+        },
+        components: {
+          "child-component1": {
+            template:
+              '<div>child1:<button v-on:click="clicked">버튼1</button></div>',
+            methods: {
+              clicked() {
+                console.log("clicked()@child-component1");
+                eventBus.$emit("clicked1", 100);
+              },
+            },
+          },
+          "child-component2": {
+            template: "<div>child2:<p>{{ message1 }}</p></div>",
+            data: function () {
+              return { message1: "안녕하세요2" };
+            },
+            created() {
+              eventBus.$on("clicked1", function (value) {
+                console.dir(this);
+                console.log(
+                  `clicked1()@child-component2: ${this.$data}, ${value}`
+                );
+                //this.message1 = "child-component1 에서 보내준 값:" + data;
+              });
+            },
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
